@@ -3,7 +3,7 @@ const {response,request}=require('express');
 const nodemailer=require('nodemailer');
 
 const emailPost =async(req,res=response)=>{
-const {email,name,}=req.body;
+const {email,name,message}=req.body;
 
 
 const transport = nodemailer.createTransport({
@@ -16,11 +16,15 @@ const transport = nodemailer.createTransport({
 });
 
 const info= await transport.sendMail({
-    from:'"Fred Foo"<foo@example.com>',
+    to:"pugagarciah@gmail.com",
+    subject:`Nuevo trabajo`,
+    html:`
+    <h3><b>Reclutador: ${name}</b></h3>
+    <h3><b>Email: ${email}</b></h3>
+    <h3><b>Message:</b></h3>
 
-    to: email,
-    subject:`Hola ${name} Bienvenido a la comunidad`,
-    html:"<b>Hello mundo</b>"
+    <b>${message}</b>`
+  
 });
 
 console.log("Message sent: %s",info.messageId);
