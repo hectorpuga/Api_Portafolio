@@ -18,8 +18,12 @@ class Server{
  
 
     middlewares(){
+
         //CORS
         this.app.use(cors())
+
+        this.app.use(express.urlencoded({ extended: false }));
+
 
         //Lectura y parseo del body
 
